@@ -11,7 +11,8 @@ import {
 } from "react-router-dom"
 
 import Root, { loader as rootLoader } from "./routes/root.tsx"
-import Team, { loader as teamLoader } from './routes/team.tsx'
+import Team, { loader as teamLoader, action as teamAction } from './routes/team.tsx'
+import ActionPage, { action as actionAction } from './routes/action-page.tsx'
 
 // 通过unstable_dataStrategy使用日志功能
 const Logger: unstable_DataStrategyFunction = ({request, matches}) => {
@@ -33,9 +34,15 @@ const routes: RouteObject[] = [
     loader: rootLoader,
     children: [
       {
-        path: 'team',
+        path: 'team/:id',
         loader: teamLoader,
+        action: teamAction,
         element: <Team />
+      },
+      {
+        path: 'action-page',
+        element: <ActionPage/>,
+        action: actionAction
       }
     ]
   }
