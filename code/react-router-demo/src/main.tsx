@@ -10,7 +10,7 @@ import {
   type unstable_DataStrategyFunction,
 } from "react-router-dom"
 
-import Root, { loader as rootLoader } from "./routes/root.tsx"
+import Root, { loader as rootLoader, ErrorCom as RootErrorCom } from "./routes/root.tsx"
 import Team, { loader as teamLoader, action as teamAction } from './routes/team.tsx'
 import ActionPage, { action as actionAction } from './routes/action-page.tsx'
 
@@ -27,11 +27,17 @@ const Logger: unstable_DataStrategyFunction = ({request, matches}) => {
   )
 }
 
+const ErrorCom = () => {
+  return <div>ErrorBoundary</div>
+}
+
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Root />,
+    element: <Root/>,
     loader: rootLoader,
+    errorElement: <RootErrorCom/>,
+    // ErrorBoundary: ErrorCom,
     children: [
       {
         path: 'team/:id',
