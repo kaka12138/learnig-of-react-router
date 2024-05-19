@@ -49,6 +49,10 @@ const routes: RouteObject[] = [
         path: 'action-page',
         element: <ActionPage/>,
         action: actionAction
+      },
+      {
+        path: "lazy-route-page",
+        lazy: () => import("./routes/lazy-route-page.tsx")
       }
     ]
   }
