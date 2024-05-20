@@ -13,7 +13,7 @@ import {
 import Root, { loader as rootLoader, ErrorCom as RootErrorCom } from "./routes/root.tsx"
 import Team, { loader as teamLoader, action as teamAction } from './routes/team.tsx'
 import ActionPage, { action as actionAction } from './routes/action-page.tsx'
-
+import LoaderPage, { loader as loaderPageLoader, ErrorCom as LoaderPageErrorCom } from './routes/loader-page.tsx'
 // 通过unstable_dataStrategy使用日志功能
 const Logger: unstable_DataStrategyFunction = ({request, matches}) => {
   return Promise.all(
@@ -44,6 +44,12 @@ const routes: RouteObject[] = [
         loader: teamLoader,
         action: teamAction,
         element: <Team />
+      },
+      {
+        path: 'loader-page/:id',
+        loader: loaderPageLoader,
+        element: <LoaderPage />,
+        errorElement: <LoaderPageErrorCom/>
       },
       {
         path: 'action-page',

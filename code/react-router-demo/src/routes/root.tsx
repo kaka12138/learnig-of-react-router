@@ -30,7 +30,7 @@ export default function RootRouter() {
     <div className="root-title">Root Router --- { msg }</div>
     <div className="root-navs">
       <Link to="/team/1" className="nav-item">team page</Link>
-      <Link to="/loader-page" className="nav-item">loader page demo</Link>
+      <Link to="/loader-page/888?name=chenjie" className="nav-item">loader page demo</Link>
       <Link to="/action-page" className="nav-item">action page demo</Link>
       <Link to="/lazy-route-page" className="nav-item">lazy route page</Link>
     </div>
