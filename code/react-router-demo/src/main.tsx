@@ -14,6 +14,7 @@ import Root, { loader as rootLoader, ErrorCom as RootErrorCom } from "./routes/r
 import Team, { loader as teamLoader, action as teamAction } from './routes/team.tsx'
 import ActionPage, { action as actionAction } from './routes/action-page.tsx'
 import LoaderPage, { loader as loaderPageLoader, ErrorCom as LoaderPageErrorCom } from './routes/loader-page.tsx'
+import IndexRoute, { loader as indexRouteLoader } from './routes/index-route.tsx'
 // 通过unstable_dataStrategy使用日志功能
 const Logger: unstable_DataStrategyFunction = ({request, matches}) => {
   return Promise.all(
@@ -36,9 +37,18 @@ const routes: RouteObject[] = [
     path: '/',
     element: <Root/>,
     loader: rootLoader,
+    shouldRevalidate: ({ nextUrl }) => {
+      // 只有访问home才会重新执行首页的loader，其他页面时都使用loader缓存的数据
+      return nextUrl.pathname === "/"
+    },
     errorElement: <RootErrorCom/>,
     // ErrorBoundary: ErrorCom,
     children: [
+      {
+        index: true,
+        element: <IndexRoute/>,
+        loader: indexRouteLoader
+      },
       {
         path: 'team/:id',
         loader: teamLoader,
@@ -60,7 +70,7 @@ const routes: RouteObject[] = [
         path: "lazy-route-page",
         lazy: () => import("./routes/lazy-route-page.tsx")
       }
-    ]
+    ],
   }
 ]
 /**
