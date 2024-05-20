@@ -35,3 +35,19 @@ html, body {
   align-items: center;
   justify-content: center;
 }
+.coms-nav {
+  width: 100%;
+  height: 100%;
+}
+
+.coms-nav-list {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.coms-nav-list .coms-nav-item {
+  padding: 4px 8px;
+  border: 1px solid #aaa;
+  margin-right: 10px;
+}

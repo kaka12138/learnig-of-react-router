@@ -35,6 +35,7 @@ export default function RootRouter() {
       <Link to="/loader-page/888?name=chenjie" className="nav-item">loader page demo</Link>
       <Link to="/action-page" className="nav-item">action page demo</Link>
       <Link to="/lazy-route-page" className="nav-item">lazy route page</Link>
+      <Link to="/coms-nav" className="nav-item">built-in components</Link>
     </div>
     <div className="root-outlet">
       {/* TODO:全局loading逻辑 */}
