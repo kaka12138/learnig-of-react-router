@@ -16,7 +16,7 @@ import ActionPage, { action as actionAction } from './routes/action-page.tsx'
 import LoaderPage, { loader as loaderPageLoader, ErrorCom as LoaderPageErrorCom } from './routes/loader-page.tsx'
 import IndexRoute, { loader as indexRouteLoader } from './routes/index-route.tsx'
 import ComsNav from './routes/coms-nav.tsx'
-import AwaitCom from './routes/coms/await-com.tsx'
+import AwaitCom, { loader as awaitComLoader } from './routes/coms/await-com.tsx'
 // 通过unstable_dataStrategy使用日志功能
 const Logger: unstable_DataStrategyFunction = ({request, matches}) => {
   return Promise.all(
@@ -78,7 +78,8 @@ const routes: RouteObject[] = [
         children: [
           {
             path: "await-com",
-            element: <AwaitCom/>
+            element: <AwaitCom/>,
+            loader: awaitComLoader
           }
         ]
       }
