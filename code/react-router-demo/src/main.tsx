@@ -17,7 +17,7 @@ import LoaderPage, { loader as loaderPageLoader, ErrorCom as LoaderPageErrorCom 
 import IndexRoute, { loader as indexRouteLoader } from './routes/index-route.tsx'
 import ComsNav from './routes/coms-nav.tsx'
 import AwaitCom, { loader as awaitComLoader } from './routes/coms/await-com.tsx'
-import FormCom from './routes/coms/form-com.tsx'
+import FormCom, { loader as formComLoader, action as formComAction } from './routes/coms/form-com.tsx'
 // 通过unstable_dataStrategy使用日志功能
 const Logger: unstable_DataStrategyFunction = ({request, matches}) => {
   return Promise.all(
@@ -84,7 +84,9 @@ const routes: RouteObject[] = [
           },
           {
             path: "form-com",
-            element: <FormCom/>
+            element: <FormCom/>,
+            loader: formComLoader,
+            action: formComAction
           }
         ]
       }

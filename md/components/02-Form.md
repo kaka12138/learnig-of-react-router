@@ -20,11 +20,32 @@
   - 2. 触发数据变更的提交(非get) --- mutation
     - 2.1 React Router的处理过程: 
       - 用户提交表单，React Router将会匹配并调用action，此时的数据已经被序列化成FormData形式，可以在action中使用,
-      - action处理完成，route中的loader将重新验证(revalidate),去保证UI和最新数据的同步
+      - ***action处理完成，route中的loader将重新验证(revalidate),去保证UI和最新数据的同步***
+
+### useSubmit --- 显式提交
+  - 1. const submit = useSubmit()
+  - 2. 提交的内容
+    - 2.1 input元素
+    - 2.2 react ref执向的元素
+    - 2.3 FormData
+    - 2.4 URLSearchParams
+    - 2.5 JSON数据并指定encType: "application/json"
+    - 2.6 纯文本数据并指定encType: "text/plain"
+  - 3. 提交的配置项
+    - method
+    - action
+    - fetcherKey
+    - navigate
+    - preventScrollReset
+    - relative
+    - replace
+    - state
+    - unstable_viewTransition
 
 ### navigate
   - 1. form提交后，默认会触发导航，但是可以navigate = {false}跳过导航，或者使用fetcher
   - navigate = {false} 等价于 useFetcher() + fetcher.Form
+  - 2. 这里的跳过导航指的是: 无论是loader还是action都不会触发，并且state数据也不会传递,这个场景在只关心数据提交时很有用，不关心提交后的结果会影响UI可以选择跳过导航
 
 ### fetcherKey
   - 1. 当使用的是非导航表单时，可以使用该属性制定导航的key
@@ -52,6 +73,7 @@
 
 ### state
   - 1. 为action对应的路径提供一个状态值，值会被存在history state中，可以使用useLocation获取
+  - 2. 一个依赖history stack中记录中的数据
 
 ### preventScrollReset
   - 1. 如果正在使用<ScrollRestoration>, 这个属性可以阻止在表单提交后，滚动位置被重置到window顶部
