@@ -51,3 +51,10 @@ html, body {
   border: 1px solid #aaa;
   margin-right: 10px;
 }
+
+.pending {
+  color: #aaa;
+}
+.active {
+  color: #f00;
+}
