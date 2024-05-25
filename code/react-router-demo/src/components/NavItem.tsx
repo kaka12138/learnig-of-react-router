@@ -7,7 +7,7 @@ interface INavItemProps {
 
 export default function NavItem({children, to, pendingText}: { children: React.ReactNode, to: string, pendingText?: string }) {
   return <NavLink 
-    to={to} 
+    to={to}
     className={({ isActive, isPending}) => isPending? "pending" : isActive ? "active" : ""}
     >{pendingText? ({isPending}) => isPending ? pendingText: children : children}
   </NavLink>

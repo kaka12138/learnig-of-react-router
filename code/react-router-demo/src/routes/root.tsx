@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData, useRouteError, json, isRouteErrorResponse } from "react-router-dom"
+import { ScrollRestoration, Outlet, useLoaderData, useRouteError, json, isRouteErrorResponse } from "react-router-dom"
 import NavItem from "../components/NavItem"
 export async function loader() {
   console.log("excute root loader")
@@ -27,21 +27,21 @@ export function ErrorCom() {
 export default function RootRouter() {
   // @ts-expect-error
   const { msg } = useLoaderData()
-  return <div className="root-container">
-   
-    <div className="root-title">Root Router --- { msg }</div>
-    <div className="root-navs">
-      <NavItem to="/" pendingText="navgating...">home page</NavItem>
-      <NavItem to="/team/1">team page</NavItem>
-      <NavItem to="/loader-page/888?name=chenjie" >loader page demo</NavItem>
-      <NavItem to="/action-page">action page demo</NavItem>
-      <NavItem to="/lazy-route-page">lazy route page</NavItem>
-      <NavItem to="/coms-nav">built-in components</NavItem>
+  return<div className="root-container">
+      <ScrollRestoration/>
+      <div className="root-title">Root Router --- { msg }</div>
+      <div className="root-navs">
+        <NavItem to="/" pendingText="navgating...">home page</NavItem>
+        <NavItem to="/team/1">team page</NavItem>
+        <NavItem to="/loader-page/888?name=chenjie" >loader page demo</NavItem>
+        <NavItem to="/action-page">action page demo</NavItem>
+        <NavItem to="/lazy-route-page">lazy route page</NavItem>
+        <NavItem to="/coms-nav">built-in components</NavItem>
+      </div>
+      <div className="root-outlet">
+        {/* TODO:全局loading逻辑 */}
+        {/* { key !== nextKey ? <div>loading...</div> : <Outlet/> } */}
+        <Outlet />
+      </div>
     </div>
-    <div className="root-outlet">
-      {/* TODO:全局loading逻辑 */}
-      {/* { key !== nextKey ? <div>loading...</div> : <Outlet/> } */}
-      <Outlet />
-    </div>
-  </div>
 }
